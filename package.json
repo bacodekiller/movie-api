@@ -1,0 +1,22 @@
+{
+  "name": "movie-api",
+  "version": "1.0.0",
+  "description": "movie api using nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bacodekiller/movie-api.git"
+  },
+  "author": "Flame",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bacodekiller/movie-api/issues"
+  },
+  "homepage": "https://github.com/bacodekiller/movie-api#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
