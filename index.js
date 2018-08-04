@@ -21,9 +21,9 @@ app.get('/', (req, res) => {
 // get a movie
 app.get('/movies/:title', (req, res) => {
     console.log(req.params);
-    let foundMovies =  movieStore.find(req.params.title); 
+    let foundMovies = movieStore.find(req.params.title);
 
-    if(foundMovies.length < 1){
+    if (foundMovies.length < 1) {
         res.statusCode = 404;
         return res.send({
             message: 'movie not found'
@@ -36,11 +36,26 @@ app.get('/movies/:title', (req, res) => {
 });
 
 // create new movie
-app.post('/movies', (req,res)=>{
+app.post('/movies', (req, res) => {
     console.log(req.body);
+    // check input req input
+    if (!req.body.Title || req.body.Title.trim().length < 1) {
+        res.statusCode = 400;
+        return res.send({
+            message: 'missing or invalid title'
+        });
+    }
+    // check movie have exist
+    if(movieStore.has(req.body.Title)){
+        res.statusCode = 400;
+        return res.send({
+            message: 'movie already existed'
+        });
+    }
+    
     movieStore.add(req.body);
     return res.send({
-        message: 'movie added successfully' 
+        message: 'movie added successfully'
     });
 });
 

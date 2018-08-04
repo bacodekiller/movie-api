@@ -14,6 +14,11 @@ class MovieStore {
     add(movie) {
         this.movieData.push(movie);
     }
+
+    has(title) {
+        let movies = this.find(title);
+        return movies.length > 0;
+    }
 }
 
 module.exports = MovieStore;
