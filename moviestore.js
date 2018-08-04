@@ -1,13 +1,18 @@
-class MovieStore{
-    constructor(){
+class MovieStore {
+    constructor() {
         this.movieData = require('./datastore.json');
     }
 
-    all(){
+    all() {
         return this.movieData;
     }
-    find(title){
+
+    find(title) {
         return this.movieData.filter(m => m.Title === title);
+    }
+
+    add(movie) {
+        this.movieData.push(movie);
     }
 }
 
