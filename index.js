@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 // get a movie
 app.get('/movies/:title', (req, res) => {
-    console.log(req.params);
+
     let foundMovies = movieStore.find(req.params.title);
 
     if (foundMovies.length < 1) {
@@ -46,16 +46,29 @@ app.post('/movies', (req, res) => {
         });
     }
     // check movie have exist
-    if(movieStore.has(req.body.Title)){
+    if (movieStore.has(req.body.Title)) {
         res.statusCode = 400;
         return res.send({
             message: 'movie already existed'
         });
     }
-    
+
     movieStore.add(req.body);
     return res.send({
         message: 'movie added successfully'
+    });
+});
+
+// update movie info
+app.put('/movies/:title', (req, res) => {
+    if (!movieStore.update(req.params.title, req.body)) {
+        res.statusCode = 500; // Internal Server error
+        return res.send({
+            message: 'failed to update movie info'
+        });
+    }
+    return res.send({
+        message: 'update movie successfully'
     });
 });
 
