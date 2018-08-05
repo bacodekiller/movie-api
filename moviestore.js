@@ -23,7 +23,7 @@ class MovieStore {
     update(title, newInfo) {
         // check movie with title have exist
         let movies = this.find(title);
-        if(movies.length < 1) {
+        if (movies.length < 1) {
             return false;
         }
         let oldMovie = movies.pop();
@@ -33,8 +33,12 @@ class MovieStore {
         return true;
     }
 
-    remove(title){
+    remove(title) {
         this.movieData = this.movieData.filter(m => m.Title !== title);
+    }
+
+    search(title) {
+        return this.movieData.filter(m => m.Title.includes(title));
     }
 }
 

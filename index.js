@@ -9,10 +9,10 @@ app.use(bodyParser.json({
 let MovieStore = require('./moviestore.js');
 let movieStore = new MovieStore();
 
-// get all movies
-app.get('/movies', (req, res) => {
-    return res.send(movieStore.all());
-});
+// //get all movies
+// app.get('/movies', (req, res) => {
+//     return res.send(movieStore.all());
+// });
 
 app.get('/', (req, res) => {
     return res.redirect('/movies');
@@ -83,6 +83,14 @@ app.delete('/movies/:title', (req, res) => {
     movieStore.remove(req.params.title);
     return res.send({
         message: 'delete movie successfully'
+    });
+});
+
+// search movie by title
+app.get('/movies', (req, res) => {
+    let movies = movieStore.search(req.query.title);
+    return res.send({
+        payload: movies
     });
 });
 
