@@ -3,6 +3,7 @@ let express = require('express');
 let movieRouter = express.Router();
 let MovieStore = require('../moviestore.js');
 let movieStore = new MovieStore();
+let paginate = require('../util').paginate;
 
 // get a movie
 movieRouter.get('/:title', (req, res) => {
@@ -71,11 +72,6 @@ movieRouter.delete('/:title', (req, res) => {
         message: 'delete movie successfully'
     });
 });
-
-function paginate(data, size, page) {
-    let index = page - 1;
-    return data.slice(index * size, (index + 1) * size);
-}
 
 // search movie by title
 movieRouter.get('/', (req, res) => {
