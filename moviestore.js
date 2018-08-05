@@ -32,6 +32,10 @@ class MovieStore {
         this.movieData = [...oldMovieList, newMovie];
         return true;
     }
+
+    remove(title){
+        this.movieData = this.movieData.filter(m => m.Title !== title);
+    }
 }
 
 module.exports = MovieStore;
